@@ -17,13 +17,13 @@ BuildRequires : buildreq-distutils3
 Provides: html5lib
 Provides: html5lib-python
 Provides: html5lib-python3
-BuildRequires : pluggy
+BuildRequires : pypi(pluggy)
 BuildRequires : py-python
 BuildRequires : pypi(six)
 BuildRequires : pypi(webencodings)
 BuildRequires : pytest
 BuildRequires : tox
-BuildRequires : virtualenv
+BuildRequires : pypi(virtualenv)
 
 %description
 ========
