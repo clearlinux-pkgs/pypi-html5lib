@@ -4,7 +4,7 @@
 #
 Name     : pypi-html5lib
 Version  : 1.1
-Release  : 57
+Release  : 58
 URL      : https://files.pythonhosted.org/packages/ac/b6/b55c3f49042f1df3dcd422b7f224f939892ee94f22abcf503a9b7339eaf2/html5lib-1.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/ac/b6/b55c3f49042f1df3dcd422b7f224f939892ee94f22abcf503a9b7339eaf2/html5lib-1.1.tar.gz
 Summary  : HTML parser based on the WHATWG HTML specification
@@ -14,16 +14,13 @@ Requires: pypi-html5lib-license = %{version}-%{release}
 Requires: pypi-html5lib-python = %{version}-%{release}
 Requires: pypi-html5lib-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
-Provides: html5lib
-Provides: html5lib-python
-Provides: html5lib-python3
-BuildRequires : pypi(pluggy)
-BuildRequires : py-python
+BuildRequires : pypi(py)
 BuildRequires : pypi(six)
 BuildRequires : pypi(webencodings)
-BuildRequires : pytest
-BuildRequires : tox
-BuildRequires : pypi(virtualenv)
+BuildRequires : pypi-pluggy
+BuildRequires : pypi-pytest
+BuildRequires : pypi-tox
+BuildRequires : pypi-virtualenv
 
 %description
 ========
@@ -66,7 +63,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641442714
+export SOURCE_DATE_EPOCH=1649695779
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
