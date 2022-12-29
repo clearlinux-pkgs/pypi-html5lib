@@ -4,7 +4,7 @@
 #
 Name     : pypi-html5lib
 Version  : 1.1
-Release  : 67
+Release  : 68
 URL      : https://files.pythonhosted.org/packages/ac/b6/b55c3f49042f1df3dcd422b7f224f939892ee94f22abcf503a9b7339eaf2/html5lib-1.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/ac/b6/b55c3f49042f1df3dcd422b7f224f939892ee94f22abcf503a9b7339eaf2/html5lib-1.1.tar.gz
 Summary  : HTML parser based on the WHATWG HTML specification
@@ -21,6 +21,9 @@ BuildRequires : pypi-pluggy
 BuildRequires : pypi-pytest
 BuildRequires : pypi-tox
 BuildRequires : pypi-virtualenv
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 ========
@@ -66,12 +69,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656401327
+export SOURCE_DATE_EPOCH=1672279806
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$FFLAGS -fno-lto "
-export FFLAGS="$FFLAGS -fno-lto "
-export CXXFLAGS="$CXXFLAGS -fno-lto "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -88,8 +91,8 @@ popd
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-html5lib
-cp %{_builddir}/html5lib-1.1/LICENSE %{buildroot}/usr/share/package-licenses/pypi-html5lib/5bd527c7e2297d365b33ea67a400b6ba995e3705
-cp %{_builddir}/html5lib-1.1/html5lib/tests/testdata/LICENSE %{buildroot}/usr/share/package-licenses/pypi-html5lib/2260a4b28dc3f43e07fa45e20334b7cdcab77588
+cp %{_builddir}/html5lib-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-html5lib/5bd527c7e2297d365b33ea67a400b6ba995e3705 || :
+cp %{_builddir}/html5lib-%{version}/html5lib/tests/testdata/LICENSE %{buildroot}/usr/share/package-licenses/pypi-html5lib/2260a4b28dc3f43e07fa45e20334b7cdcab77588 || :
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
